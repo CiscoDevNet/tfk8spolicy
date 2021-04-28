@@ -124,7 +124,6 @@ locals {
   vspherecluster = yamldecode(data.terraform_remote_state.global.outputs.vspherecluster)
   resource_pool = yamldecode(data.terraform_remote_state.global.outputs.resource_pool)
 
-  globalwsname = yamldecode(data.terraform_remote_state.global.outputs.globalwsname)
 }
 
 
