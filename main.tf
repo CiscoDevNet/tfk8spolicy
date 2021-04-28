@@ -54,17 +54,17 @@ module "infra_config_policy" {
   org_name         = local.organization
 }
 
-#module "ip_pool_policy" {
-#  source           = "terraform-cisco-modules/iks/intersight//modules/ip_pool"
-#  name             = local.ip_pool_policy 
-#  starting_address = local.starting_address
-#  pool_size        = local.pool_size
-#  netmask          = local.netmask
-#  gateway          = local.gateway
-#  primary_dns      = local.primary_dns
-#
-#  org_name = local.organization
-#}
+module "ip_pool_policy" {
+  source           = "terraform-cisco-modules/iks/intersight//modules/ip_pool"
+  name             = local.ip_pool_policy 
+  starting_address = local.starting_address
+  pool_size        = local.pool_size
+  netmask          = local.netmask
+  gateway          = local.gateway
+  primary_dns      = local.primary_dns
+
+  org_name = local.organization
+}
 
 module "network" {
   source      = "terraform-cisco-modules/iks/intersight//modules/k8s_network"
