@@ -4,27 +4,15 @@ data "terraform_remote_state" "global" {
   config = {
     organization = "CiscoDevNet"
     workspaces = {
-      name = var.globalwsname
+      name = local.globalwsname
     }
   }
 }
 
-variable "api_key" {
-  type        = string
-  description = "API Key"
-}
-variable "secretkey" {
-  type        = string
-  description = "Secret Key"
-}
-variable "password" {
-  type        = string
-  description = "vsphere password"
-}
-variable "globalwsname" {
-  type        = string
-  description = "TFC WS from where to get the params"
-}
+#variable "globalwsname" {
+#  type        = string
+#  description = "TFC WS from where to get the params"
+#}
 
 terraform {
   required_providers {
@@ -36,8 +24,8 @@ terraform {
 }
 
 provider "intersight" {
-  apikey    = var.api_key
-  secretkey = var.secretkey
+  apikey    = local.api_key
+  secretkey = local.secretkey
   endpoint = "https://intersight.com"
 }
 
@@ -49,7 +37,7 @@ module "infra_config_policy" {
   vc_datastore     = local.datastore
   vc_cluster       = local.vspherecluster
   vc_resource_pool = local.resource_pool
-  vc_password      = var.password
+  vc_password      = local.password
   org_name         = local.organization
 }
 
@@ -122,6 +110,11 @@ locals {
   datastore = yamldecode(data.terraform_remote_state.global.outputs.datastore)
   vspherecluster = yamldecode(data.terraform_remote_state.global.outputs.vspherecluster)
   resource_pool = yamldecode(data.terraform_remote_state.global.outputs.resource_pool)
+
+  api_key = yamldecode(data.terraform_remote_state.global.outputs.api_key)
+  secretkey = yamldecode(data.terraform_remote_state.global.outputs.secretkey)
+  password = yamldecode(data.terraform_remote_state.global.outputs.password)
+  globalwsname = yamldecode(data.terraform_remote_state.global.outputs.globalwsname)
 }
 
 
