@@ -4,11 +4,15 @@ data "terraform_remote_state" "global" {
   config = {
     organization = "CiscoDevNet"
     workspaces = {
-      name = local.globalwsname
+      name = var.globalwsname
     }
   }
 }
 
+variable "globalwsname" {
+  type        = string
+  description = "API key for Intersight user"
+}
 variable "api_key" {
   type        = string
   description = "API key for Intersight user"
