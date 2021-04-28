@@ -9,10 +9,19 @@ data "terraform_remote_state" "global" {
   }
 }
 
-#variable "globalwsname" {
-#  type        = string
-#  description = "TFC WS from where to get the params"
-#}
+variable "api_key" {
+  type        = string
+  description = "API key for Intersight user"
+}
+
+variable "secretkey" {
+  type        = string
+  description = "Secret key for Intersight user"
+}
+variable "password" {
+  type        = string
+  description = "Password for vsphere admin"
+}
 
 terraform {
   required_providers {
@@ -24,8 +33,8 @@ terraform {
 }
 
 provider "intersight" {
-  apikey    = local.api_key
-  secretkey = local.secretkey
+  apikey    = var.api_key
+  secretkey = var.secretkey
   endpoint = "https://intersight.com"
 }
 
@@ -37,7 +46,7 @@ module "infra_config_policy" {
   vc_datastore     = local.datastore
   vc_cluster       = local.vspherecluster
   vc_resource_pool = local.resource_pool
-  vc_password      = local.password
+  vc_password      = var.password
   org_name         = local.organization
 }
 
@@ -111,9 +120,6 @@ locals {
   vspherecluster = yamldecode(data.terraform_remote_state.global.outputs.vspherecluster)
   resource_pool = yamldecode(data.terraform_remote_state.global.outputs.resource_pool)
 
-  api_key = yamldecode(data.terraform_remote_state.global.outputs.api_key)
-  secretkey = yamldecode(data.terraform_remote_state.global.outputs.secretkey)
-  password = yamldecode(data.terraform_remote_state.global.outputs.password)
   globalwsname = yamldecode(data.terraform_remote_state.global.outputs.globalwsname)
 }
 
