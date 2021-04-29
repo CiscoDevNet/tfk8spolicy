@@ -1,2 +1,1 @@
-# kubepolicies
-# tfk8spolicy
+# Provision IP Pools and Policies required for IKS provisioning
