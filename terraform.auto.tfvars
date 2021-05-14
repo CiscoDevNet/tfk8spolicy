@@ -1,1 +1,1 @@
-globalwsname = "globalvar"
+globalwsname = "sb_globalvar"
