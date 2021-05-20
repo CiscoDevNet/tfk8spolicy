@@ -46,7 +46,7 @@ module "infra_config_policy" {
   source           = "terraform-cisco-modules/iks/intersight//modules/infra_config_policy"
   name             = local.infra_config_policy 
   device_name      = local.device_name
-  vc_portgroup     = [local.portgroup]
+  vc_portgroup     = local.portgroup
   vc_datastore     = local.datastore
   vc_cluster       = local.vspherecluster
   vc_resource_pool = local.resource_pool
