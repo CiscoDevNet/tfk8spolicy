@@ -119,7 +119,7 @@ locals {
   gateway = yamldecode(data.terraform_remote_state.global.outputs.gateway)
   infra_config_policy = yamldecode(data.terraform_remote_state.global.outputs.infra_config_policy)
   device_name = yamldecode(data.terraform_remote_state.global.outputs.device_name)
-  portgroup = "Management"
+  portgroup = yamldecode(data.terraform_remote_state.global.outputs.portgroup) 
   datastore = yamldecode(data.terraform_remote_state.global.outputs.datastore)
   vspherecluster = yamldecode(data.terraform_remote_state.global.outputs.vspherecluster)
   resource_pool = yamldecode(data.terraform_remote_state.global.outputs.resource_pool)
