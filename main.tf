@@ -22,10 +22,6 @@ variable "secretkey" {
   type        = string
   description = "Secret key for Intersight user"
 }
-variable "password" {
-  type        = string
-  description = "Password for vsphere admin"
-}
 
 terraform {
   required_providers {
@@ -50,7 +46,7 @@ module "infra_config_policy" {
   vc_datastore     = local.datastore
   vc_cluster       = local.vspherecluster
   vc_resource_pool = local.resource_pool
-  vc_password      = var.password
+  vc_password      = local.password
   org_name         = local.organization
 }
 
@@ -119,8 +115,9 @@ locals {
   gateway = yamldecode(data.terraform_remote_state.global.outputs.gateway)
   infra_config_policy = yamldecode(data.terraform_remote_state.global.outputs.infra_config_policy)
   device_name = yamldecode(data.terraform_remote_state.global.outputs.device_name)
-#  portgroup = yamldecode(data.terraform_remote_state.global.outputs.portgroup) 
-  portgroup = "VM Network" 
+  portgroup = yamldecode(data.terraform_remote_state.global.outputs.portgroup) 
+  password = yamldecode(data.terraform_remote_state.global.outputs.password) 
+#  portgroup = "VM Network" 
   datastore = yamldecode(data.terraform_remote_state.global.outputs.datastore)
   vspherecluster = yamldecode(data.terraform_remote_state.global.outputs.vspherecluster)
   resource_pool = yamldecode(data.terraform_remote_state.global.outputs.resource_pool)
