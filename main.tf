@@ -11,7 +11,7 @@ data "terraform_remote_state" "global" {
 
 variable "globalwsname" {
   type        = string
-  description = "API key for Intersight user"
+  description = "TFCB workspace name that has all of the global variables"
 }
 variable "api_key" {
   type        = string
