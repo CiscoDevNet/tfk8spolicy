@@ -90,7 +90,7 @@ module "version_1-19-15-iks3" {
   version = "=2.1.2"
   policyName     = local.k8s_version_name
   # policyName     = "1.19.15-iks.3"
-  iksVersionName = "1.19.15-iks.3"
+  iksVersionName = "1.20.14-iks.0"
   org_name = local.organization
 #  tags     = var.tags
 }
