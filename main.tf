@@ -95,12 +95,12 @@ module "network" {
 #  tags     = var.tags
 #}
 
-module "version_1-21-10-iks-0" {
+module "version_1-21-11-iks-2" {
   source           = "terraform-cisco-modules/iks/intersight//modules/version"
   version = "=2.1.2"
   policyName     = local.k8s_version_name
   # policyName     = "1.19.15-iks.3"
-  iksVersionName = "1.21.10-iks.0"
+  iksVersionName = "1.21.11-iks.2"
   org_name = local.organization
 #  tags     = var.tags
 }
